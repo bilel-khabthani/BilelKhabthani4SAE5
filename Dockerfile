@@ -1,17 +1,14 @@
-# Stage 1 : Build (compilation avec Maven)
-FROM maven:3.9.6-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-# Compile le projet (skip tests pour accélérer)
-RUN mvn clean package -DskipTests
+# Image de base légère avec Java 17 (comme ton pom.xml)
+FROM openjdk:17-jdk-alpine
 
-# Stage 2 : Runtime (image légère avec le JAR)
-FROM eclipse-temurin:17-jre-alpine
+# Répertoire de travail dans le conteneur
 WORKDIR /app
-# Copie le JAR depuis le stage de build
-COPY --from=build /app/target/*.jar app.jar
+
+# Copie le JAR généré par Maven (adapte le nom si besoin)
+COPY target/student-management-0.0.1-SNAPSHOT.jar app.jar
+
 # Expose le port par défaut de Spring Boot
 EXPOSE 8080
-# Lance l'app
+
+# Commande pour lancer l'app
 ENTRYPOINT ["java", "-jar", "app.jar"]
