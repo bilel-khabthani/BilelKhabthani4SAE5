@@ -1,3 +1,5 @@
+# spring-deployment.yaml
+---
 apiVersion: v1
 kind: Secret
 metadata:
@@ -5,7 +7,8 @@ metadata:
   namespace: devops
 type: Opaque
 data:
-  MYSQL_PASSWORD: c3R1ZGVudHBhc3M=
+  MYSQL_PASSWORD: c3R1ZGVudHBhc3M=      # studentpass
+  MYSQL_ROOT_PASSWORD: cm9vdHBhc3N3b3Jk # rootpassword
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -17,7 +20,7 @@ data:
   MYSQL_USER: "studentuser"
 ---
 apiVersion: apps/v1
-0kind: Deployment
+kind: Deployment
 metadata:
   name: spring-app
   namespace: devops
@@ -35,7 +38,7 @@ spec:
       - name: spring-app
         image: bilelkhabthani/student-management:latest
         imagePullPolicy: Always
-        ports:
+         ports:
         - containerPort: 8080
         env:
         - name: SPRING_DATASOURCE_URL
@@ -53,6 +56,8 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: MYSQL_PASSWORD
+        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+          value: "update"
 ---
 apiVersion: v1
 kind: Service
