@@ -1,5 +1,3 @@
-apiVersion: v1
-kind: PersistentVolume
 metadata:
   name: mysql-pv
 spec:
@@ -40,7 +38,7 @@ spec:
     metadata:
       labels:
         app: mysql
-    spec:
+            spec:
       containers:
       - name: mysql
         image: mysql:8.0
