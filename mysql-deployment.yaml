@@ -75,6 +75,6 @@ spec:
   selector:
     app: mysql
   ports:
-    - port: 8089
-      targetPort: 8089
+    - port: 3306
+      targetPort: 3306
   type: ClusterIP
