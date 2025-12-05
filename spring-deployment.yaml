@@ -39,7 +39,7 @@ spec:
         image: bilelkhabthani/student-management:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 8089
         env:
         - name: SPRING_DATASOURCE_URL
           valueFrom:
@@ -69,5 +69,5 @@ spec:
   selector:
     app: spring-app
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8089
+      targetPort: 8089
