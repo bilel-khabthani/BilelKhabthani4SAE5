@@ -1,3 +1,4 @@
+# mysql-deployment.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -12,7 +13,6 @@ spec:
   storageClassName: manual
   hostPath:
     path: /tmp/mysql-data
-
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -26,7 +26,6 @@ spec:
   resources:
     requests:
       storage: 5Gi
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -64,7 +63,6 @@ spec:
       - name: mysql-storage
         persistentVolumeClaim:
           claimName: mysql-pvc
-
 ---
 apiVersion: v1
 kind: Service
