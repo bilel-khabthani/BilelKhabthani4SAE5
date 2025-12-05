@@ -7,8 +7,8 @@ metadata:
   namespace: devops
 type: Opaque
 data:
-  MYSQL_PASSWORD: c3R1ZGVudHBhc3M=         # studentpass
-  MYSQL_ROOT_PASSWORD: cm9vdHBhc3N3b3Jk   # rootpassword
+  MYSQL_PASSWORD: c3R1ZGVudHBhc3M=      # studentpass
+  MYSQL_ROOT_PASSWORD: cm9vdHBhc3N3b3Jk # rootpassword
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -57,7 +57,7 @@ spec:
               name: mysql-secret
               key: MYSQL_PASSWORD
         - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-          value: update
+          value: "update"
 ---
 apiVersion: v1
 kind: Service
